@@ -101,6 +101,8 @@ components:
     PreferencesRequest:
       type: object
       properties:
+        currency:
+          type: string
         emergencyFundMonths:
           type: integer
           format: int32
