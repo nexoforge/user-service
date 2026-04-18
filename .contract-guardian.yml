@@ -1,0 +1,36 @@
+version: "1"
+
+sources:
+  rest:
+    paths:
+      - "**/*.yaml"
+    baseline: branch:main
+
+  database:
+    paths:
+      - "src/main/resources/db/**/*.xml"
+    baseline: branch:main
+
+rules:
+  rest:
+    breaking:
+      - endpoint-removed
+      - required-param-added
+      - response-field-removed
+      - response-field-type-changed
+      - status-code-removed
+    warning:
+      - response-field-deprecated
+      - parameter-renamed
+  database:
+    breaking:
+      - column-removed
+      - table-removed
+      - not-null-added-no-default
+      - column-type-changed
+    warning:
+      - column-renamed
+      - migration-modified
+
+gate:
+  block-on: breaking

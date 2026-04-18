@@ -1,0 +1,137 @@
+openapi: 3.0.1
+info:
+  title: API
+  version: 1.0.0
+tags:
+- name: Avatar
+  description: Manage user avatar images
+- name: User Preferences
+  description: Manage user preferences and settings
+paths:
+  /api/v1/users/me:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoResponse'
+  /api/v1/users/avatar:
+    get:
+      summary: Get avatar
+      description: Retrieve the user's avatar image
+      responses:
+        "200":
+          description: Avatar image
+        "404":
+          description: Avatar not found
+    post:
+      summary: Upload avatar
+      description: "Upload a new avatar image (max 5MB, images only)"
+      responses:
+        "200":
+          description: Avatar uploaded successfully
+        "400":
+          description: Invalid file (size/type)
+    delete:
+      summary: Delete avatar
+      description: Delete the user's avatar image
+      responses:
+        "204":
+          description: Avatar deleted successfully
+        "404":
+          description: No avatar to delete
+  /api/v1/users/preferences:
+    get:
+      summary: Get user preferences
+      description: Retrieve preferences for the authenticated user
+      responses:
+        "200":
+          description: Preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferencesResponse'
+    put:
+      summary: Update preferences
+      description: Update existing user preferences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferencesRequest'
+        required: true
+      responses:
+        "200":
+          description: Preferences updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferencesResponse'
+        "400":
+          description: Invalid request
+    post:
+      summary: Create or update preferences
+      description: Create new preferences or update existing ones
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferencesRequest'
+        required: true
+      responses:
+        "200":
+          description: Preferences saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreferencesResponse'
+        "400":
+          description: Invalid request
+components:
+  schemas:
+    UserInfoResponse:
+      type: object
+      properties:
+        email:
+          type: string
+        message:
+          type: string
+    PreferencesResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        currency:
+          type: string
+        emergencyFundMonths:
+          type: integer
+          format: int32
+        monthlySalary:
+          type: number
+          format: double
+        avatarUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isFirstTime:
+          type: boolean
+    PreferencesRequest:
+      type: object
+      properties:
+        currency:
+          type: string
+        emergencyFundMonths:
+          type: integer
+          format: int32
+        monthlySalary:
+          type: number
+          format: double

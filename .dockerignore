@@ -1,0 +1,10 @@
+# Exclude build outputs and temp files
+target/
+.mvn/wrapper/maven-wrapper.jar
+.git/
+.idea/
+*.iml
+*.log
+
+# Keep source files for multi-stage builds
+# pom.xml and src/ are needed for the build stage
