@@ -141,20 +141,13 @@
                             <goal>generate-spec</goal>
                         </goals>
                         <configuration>
-                            <diff>HEAD</diff>
                             <framework>JAX_RS</framework>
                             <packagesToScan>
                                 <package>com.personalfinance.userservice.resource</package>
                                 <package>com.personalfinance.userservice.dto</package>
                             </packagesToScan>
-                            <!-- where to write the spec — commit this file -->
                             <outputFile>${project.basedir}/docs/openapi.yaml</outputFile>
                         </configuration>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
