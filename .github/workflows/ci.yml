@@ -74,7 +74,16 @@ jobs:
       - name: Scan for breaking changes
         run: |
           java -jar .cg-tool/contract-guardian-cli/target/contract-guardian-cli-*.jar \
-            scan --diff origin/${{ github.base_ref }}..HEAD
+            scan --diff origin/${{ github.base_ref }}..HEAD \
+            --reporter terminal \
+            --reporter junit:cg-results/results.xml \
+            --github-pr nexoforge/user-service#${{ github.event.pull_request.number }}
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-guardian-results
+          path: cg-results/
 
   docker-build:
     name: Docker Build
