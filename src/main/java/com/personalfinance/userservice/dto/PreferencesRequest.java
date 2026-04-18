@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
 
 public record PreferencesRequest(
-    @NotNull(message = "Currency is required field")
-    String currency,
 
     @NotNull(message = "Emergency fund months is required")
     @Min(value = 1, message = "Emergency fund months must be at least 1")
