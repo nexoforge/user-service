@@ -71,7 +71,6 @@ public class UserPreferencesService {
     private PreferencesResponse toResponse(UserPreferences prefs, boolean isFirstTime) {
         return new PreferencesResponse(
             prefs.id,
-            prefs.email,
             (String) prefs.preferences.getOrDefault("currency", "USD"),
             (Integer) prefs.preferences.getOrDefault("emergencyFundMonths", 3),
             ((Number) prefs.preferences.getOrDefault("monthlySalary", 0.0)).doubleValue(),

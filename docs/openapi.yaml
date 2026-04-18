@@ -98,14 +98,21 @@ components:
           type: string
         message:
           type: string
+    PreferencesRequest:
+      type: object
+      properties:
+        emergencyFundMonths:
+          type: integer
+          format: int32
+        monthlySalary:
+          type: number
+          format: double
     PreferencesResponse:
       type: object
       properties:
         id:
           type: string
           format: uuid
-        email:
-          type: string
         currency:
           type: string
         emergencyFundMonths:
@@ -124,14 +131,3 @@ components:
           format: date-time
         isFirstTime:
           type: boolean
-    PreferencesRequest:
-      type: object
-      properties:
-        currency:
-          type: string
-        emergencyFundMonths:
-          type: integer
-          format: int32
-        monthlySalary:
-          type: number
-          format: double

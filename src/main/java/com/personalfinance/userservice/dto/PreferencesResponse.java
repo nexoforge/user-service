@@ -5,7 +5,6 @@ import java.util.UUID;
 
 public record PreferencesResponse(
     UUID id,
-    String email,
     String currency,
     Integer emergencyFundMonths,
     Double monthlySalary,
