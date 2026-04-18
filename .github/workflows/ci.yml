@@ -47,6 +47,7 @@ jobs:
     permissions:
       contents: read
       packages: read
+      pull-requests: write # needed to post/update the PR comment
 
     steps:
       - name: Checkout user-service
@@ -78,6 +79,8 @@ jobs:
             --reporter terminal \
             --reporter junit:cg-results/results.xml \
             --github-pr nexoforge/user-service#${{ github.event.pull_request.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required by GitHubPrReporter
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
