@@ -58,7 +58,7 @@ jobs:
       - name: Checkout contract-guardian CLI
         uses: actions/checkout@v4
         with:
-          repository: nexoforge/contract-guardian
+          repository: hoag-7/contract-guardian
           path: .cg-tool
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -78,7 +78,7 @@ jobs:
             scan --diff origin/${{ github.base_ref }}..HEAD \
             --reporter terminal \
             --reporter junit:cg-results/results.xml \
-            --github-pr nexoforge/user-service#${{ github.event.pull_request.number }}
+            --github-pr hoag-7/user-service#${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required by GitHubPrReporter
       - name: Upload results
