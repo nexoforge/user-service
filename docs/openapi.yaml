@@ -115,8 +115,6 @@ components:
         id:
           type: string
           format: uuid
-        email:
-          type: string
         currency:
           type: string
         emergencyFundMonths:

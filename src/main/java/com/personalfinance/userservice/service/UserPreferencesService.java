@@ -62,7 +62,6 @@ public class UserPreferencesService {
     private void updatePreferences(UserPreferences prefs, PreferencesRequest request) {
         // Create a new HashMap to ensure Hibernate detects the change for JSONB column
         Map<String, Object> newPrefs = new HashMap<>(prefs.preferences);
-        newPrefs.put("currency", request.currency());
         newPrefs.put("emergencyFundMonths", request.emergencyFundMonths());
         newPrefs.put("monthlySalary", request.monthlySalary());
         // Reassign to trigger Hibernate's dirty checking
@@ -72,7 +71,6 @@ public class UserPreferencesService {
     private PreferencesResponse toResponse(UserPreferences prefs, boolean isFirstTime) {
         return new PreferencesResponse(
             prefs.id,
-            prefs.email,
             (String) prefs.preferences.getOrDefault("currency", "USD"),
             (Integer) prefs.preferences.getOrDefault("emergencyFundMonths", 3),
             ((Number) prefs.preferences.getOrDefault("monthlySalary", 0.0)).doubleValue(),
