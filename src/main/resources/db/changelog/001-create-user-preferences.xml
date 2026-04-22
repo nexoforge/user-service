@@ -26,4 +26,12 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="002-add-country-to-user-preferences" author="personal-finance">
+        <addColumn tableName="user_preferences" schemaName="user_schema">
+            <column name="country" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
